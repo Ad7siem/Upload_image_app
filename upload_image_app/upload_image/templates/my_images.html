@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>
+        My Images
+    </h1>
+    <br/><br/>
+    {% if user.is_authenticated %}
+    <ul>
+        {% for image in images_list %}
+            <img src="{{ image.thumbnail_200.url }}" class="img-thumbnail"><br/><br/>
+            {% if name_group == 'B' %}
+                <ul>
+                    <a href="{% url 'show-image' image.id 200 %}" class="btn btn-secondary">200px</a>
+                </ul>
+            {% elif name_group == 'P' %}
+                <ul>
+                    <a href="{% url 'show-image' image.id 200 %}" class="btn btn-secondary">200px</a>
+                    <a href="{% url 'show-image' image.id 400 %}" class="btn btn-secondary">400px</a>
+                    <a href="{% url 'show-image' image.id 'origin' %}" class="btn btn-secondary">Origin</a>
+                </ul>
+            {% elif name_group == 'E'%}
+                <ul>
+                    <a href="{% url 'show-image' image.id 200 %}" class="btn btn-secondary">200px</a>
+                    <a href="{% url 'show-image' image.id 400 %}" class="btn btn-secondary">400px</a>
+                    <a href="{% url 'show-image' image.id 'origin' %}" class="btn btn-secondary">Origin</a>
+                    {% comment %} <a href="{% url 'show-image' image.id 'time' %}" class="btn btn-secondary">Time</a> {% endcomment %}
+                </ul>
+            {% endif %}
+            <br/><br/>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Sorry!</h4>
+            <p>You must be logged in to view this page...</p>
+            <hr>
+            <p class="mb-0"><a href="{% url 'login-user' %}">Login Here.</a></p>
+        </div>
+    {% endif %}
+{% endblock %}

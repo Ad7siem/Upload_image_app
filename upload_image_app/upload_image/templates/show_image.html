@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if height == 'origin' %}
+    <h1>
+        <img src="{{ image.image.url }}" class="img-thumbnail"><br/><br/>
+    </h1>
+    {% comment %} {% elif height == 'time'%}
+    <h1>
+        <img src="{{ image.image.url }}" class="img-thumbnail"><br/><br/>
+    </h1> {% endcomment %}
+    {% elif height == '200' %}
+    <h1>
+        <img src="{{ image.thumbnail_200.url }}" class="img-thumbnail" ><br/><br/>
+    </h1>
+    {% elif height == '400' %}
+    <h1>
+        <img src="{{ image.thumbnail_400.url }}" class="img-thumbnail" ><br/><br/>
+    </h1>
+    {% endif %}
+    <br/><br/>
+{% endblock %}
